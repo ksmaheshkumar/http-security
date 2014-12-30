@@ -25,6 +25,9 @@ module HTTP
       # The parsed `Strict-Transport-Security` header.
       attr_reader :strict_transport_security
 
+      # The parsed `Public-Key-Pins` header.
+      attr_reader :public_key_pins
+
       # The parsed `X-Content-Type-Options` header.
       attr_reader :x_content_type_options
       alias content_type_options x_content_type_options
@@ -68,6 +71,8 @@ module HTTP
       # @option options [Array<Hash>] :set_cookie
       #   The parsed `Set-Cookie` header.
       #
+      # @option options [Hash] :public_key_pins
+      #
       # @option options [Hash] :x_content_type_options
       #   The parsed `X-Content-Type-Options` header.
       #
@@ -90,6 +95,7 @@ module HTTP
         @pragma = headers[:pragma]
         @strict_transport_security = headers[:strict_transport_security]
         @set_cookie = headers[:set_cookie]
+        @public_key_pins = headers[:public_key_pins]
         @x_content_type_options = headers[:x_content_type_options]
         @x_frame_options = headers[:x_frame_options]
         @x_permitted_cross_domain_policies = headers[:x_permitted_cross_domain_policies]
@@ -104,6 +110,7 @@ module HTTP
         [:pragma, 'Pragma', Parsers::Pragma],
         [:strict_transport_security, 'Strict-Transport-Security', Parsers::StrictTransportSecurity],
         [:set_cookie, 'Set-Cookie', Parsers::SetCookie],
+        [:public_key_pins, 'Public-Key-Pins', Parsers::PublicKeyPins],
         [:x_content_type_options, 'X-Content-Type-Options', Parsers::XContentTypeOptions],
         [:x_frame_options, 'X-Frame-Options', Parsers::XFrameOptions],
         [:x_permitted_cross_domain_policies, 'X-Permitted-Cross-Domain-Policies', Parsers::XPermittedCrossDomainPolicies],
